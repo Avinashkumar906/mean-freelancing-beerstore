@@ -1,0 +1,30 @@
+<div class="container-fluid p-4">
+    <div class="row">
+        <h4 class="h3 col-12 my-4 text-left" *ngIf="(productList | searchProduct:key).length > 0">Here’s to over 100 million glasses raised.</h4>
+        <h4 class="h3 col-12 my-4 text-left" *ngIf="(productList | searchProduct:key).length == 0">No product found!
+        </h4>
+        <div class="col-12">
+            <div class="bg-dark" style="height: 2px;"></div>
+        </div>
+        <div class="col-12">
+            <div class="form-group my-4 mx-auto d-block w-auto" style="max-width: 400px;">
+                <input type="text" class="form-control" placeholder="Search product by name !" [(ngModel)]="key">
+            </div>
+        </div>
+        <hr />
+        <div class="col-md-3 col-lg-2 p-1" *ngFor="let item of productList | searchProduct:key;let i = index">
+            <div class="card d-block mx-auto bg-dark tet-center" style="cursor: pointer;" [routerLink]="['/product',item._id]">
+                <div class="card-body text-center text-white">
+                    <small class="m-0 text-light">Best Price!</small>
+                    <span class="h6 m-0 d-block" style="height: 56px;overflow: hidden;">{{item.name}}</span>
+                    <div class="w-100 my-2" style="height: 150px;overflow: hidden;">
+                        <img [src]='env.api+item.image' class="w-auto" height="100%">
+                    </div>
+                    <p class="m-0">Volume: {{item.type}}.</p>
+                    <h6 class="h6 card-text">&euro; {{item.cost}}/-</h6>
+                    <!-- <a class="btn btn-light m-1">View</a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

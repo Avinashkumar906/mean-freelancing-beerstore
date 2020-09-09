@@ -1,0 +1,62 @@
+<div style="background-color: rgba(255, 255, 255, .1);">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between bd-highlight">
+            <div class="p-2 hm-menu" (click)="toggleNav()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="flex-fill">
+                <div class="nav-container" [ngClass]="{'visible':navopen}">
+                    <div class="align-center">
+                        <ul class="list-group mx-auto text-center">
+                            <li class="list-group-item w-auto" [routerLink]="['/home']" [routerLinkActive]="['active-custom']" (click)="toggleNav()">
+                                <strong>Home</strong>
+                            </li>
+                            <li class="list-group-item w-auto" [routerLink]="['/product']" [routerLinkActive]="['active-custom']" (click)="toggleNav()">
+                                <strong>Shop</strong>
+                            </li>
+                            <li class="list-group-item w-auto" [routerLink]="['/order']" [routerLinkActive]="['active-custom']" (click)="toggleNav()">
+                                <strong>My Info</strong>
+                            </li>
+                            <li class="list-group-item w-auto" *ngIf="!(user && user.role === 'admin')" [routerLink]="['/about']" [routerLinkActive]="['active-custom']" (click)="toggleNav()">
+                                <strong>About</strong>
+                            </li>
+                            <li class="list-group-item w-auto" *ngIf="(user && user.role === 'admin')" [routerLink]="['/admin','product']" [routerLinkActive]="['active-custom']" (click)="toggleNav()">
+                                <strong>Add&nbsp;Product</strong>
+                            </li>
+                            <li class="list-group-item w-auto" *ngIf="(user && user.role === 'admin')" [routerLink]="['/admin','productupdate']" [routerLinkActive]="['active-custom']" (click)="toggleNav()">
+                                <strong>Update&nbsp;Product</strong>
+                            </li>
+                            <li class="list-group-item w-auto" *ngIf="(user && user.role === 'admin')" [routerLink]="['/admin','user']" [routerLinkActive]="['active-custom']" (click)="toggleNav()">
+                                <strong>Manage&nbsp;Users</strong>
+                            </li>
+                            <li class="list-group-item w-auto" *ngIf="(user && user.role === 'admin')" [routerLink]="['/admin','order']" [routerLinkActive]="['active-custom']" (click)="toggleNav()">
+                                <strong>Manage&nbsp;Orders</strong>
+                            </li>
+                            <li class="list-group-item py-0 mt-3 w-100" style="border: none;"  *ngIf=" user; else dummy">
+                                <span class="btn btn-secondary" (click)="logout() || toggleNav()">logout</span> 
+                            </li>
+                            
+                            <ng-template #dummy>
+                                <li class="list-group-item py-0 mt-3 w-100" style="border: none;">
+                                    <span class="btn btn-light mb-1 d-block" [routerLink]="['/signin']" [routerLinkActive]="['active-custom']" (click)="toggleNav()" >Sign In</span>
+                                    <span class="btn btn-secondary d-block" [routerLink]="['/signup']" [routerLinkActive]="['active-custom']" (click)="toggleNav()" >Sign Up</span>
+                                </li>
+                            </ng-template>
+                        </ul>
+                    </div>
+                    <div class="close-custom px-4 py-2" (click)="toggleNav()">
+                        <span>X</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-auto">
+                <span class="btn btn-light m-2" [routerLink]="['/checkout']">
+                    <span>Cart</span>
+                    <span class="badge badge-secondary">{{getCount() == 0 ? '' : getCount()}}</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

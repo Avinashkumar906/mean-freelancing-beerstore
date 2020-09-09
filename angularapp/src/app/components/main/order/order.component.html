@@ -1,0 +1,48 @@
+<div class="container-fluid p-4">
+    <div class="row">
+        <div class="col-md-12 text-center" *ngIf="user;else noUser">
+            <h2 class="h2">Hi {{user && user?.name}}</h2>
+            <p>{{user && user?.email}}</p>
+            <span class="btn btn-light my-3" (click)="fetchOrders()">click to view recent orders:</span>
+            <ul class="list-group text-white text-left" *ngIf="orderList.length != 0;">
+                <li class="list-group-item bg-dark"><strong>Recent Orders:</strong></li>
+                <li class="list-group-item bg-dark" *ngFor="let item of orderList;let i = index">
+                    <div class="row">
+                        <div class="col-12">
+                            <strong>{{i+1}}. ID: {{item._id}}</strong>
+                        </div>
+                        <div class="col-12">
+                            <div class="ml-3">
+                                <strong>Address: </strong>{{item.address}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="ml-3">
+                                <strong>Name: </strong> {{item.name}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <strong>Email: </strong>{{item.email}}
+                        </div>
+                        <div class="col-sm-2">
+                            <strong>Total: </strong>{{totalPrice(item)}} &euro;
+                        </div>
+                        <div class="col-sm-2">
+                            <strong>Status: </strong>{{item.status}}
+                        </div>
+                        <div class="col-12 text-center">
+                            <span class="btn btn-light btn-sm" [routerLink]="['/orderdetail',item._id]">View</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item bg-dark text-center" *ngIf="noOrder"><strike>No recent order found !</strike></li>
+            </ul>
+        </div>
+        <ng-template #noUser>
+            <div class="col-md-12 text-center">
+                <h2 class="h2">"Sign In, to view recent purchases"</h2>
+                <span class="my-2 btn btn-light" [routerLink]="['/signin']">Sign In</span>
+            </div>
+        </ng-template>
+    </div>
+</div>

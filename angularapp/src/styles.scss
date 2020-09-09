@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+// @import "~ngx-smart-modal/ngx-smart-modal";
+// @import "app/app.component";
+
+h1,h2,h3,h4,h5,h6,p{
+    color: white;
+}
+
+.text-white{
+    color: white!important;
+}
+
+.form-custom{
+    border: 1px solid grey;
+    padding: 30px;
+    border-radius: 10px;
+    margin: 50px auto;
+}
+
+.form-control{
+    border-radius: 0px!important;
+    outline: none;
+}
+
+.s-light{
+    box-shadow: 3px 3px 25px rgba(255,255,255,.1);
+}
+
+button:disabled{
+    cursor: not-allowed!important;
+    opacity: 1;
+}
+
+
+.btn{
+    border-radius: 30px!important;
+    padding-right: 20px;
+    padding-left: 20px;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+    outline: none;
+    &:focus{
+        outline: none;
+        box-shadow: 5px 5px 15px rgba(0,0,0,.4);
+    }
+    &:hover{
+        outline: none;
+        box-shadow: 5px 5px 15px rgba(0,0,0,.4);
+    }
+}

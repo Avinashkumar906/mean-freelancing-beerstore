@@ -1,0 +1,32 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <h2 class="h2 w-100 text-center mb-3">Manage Users</h2>
+        <div class="col-12">
+            <ul class="list-group text-white" >
+                <li class="list-group-item bg-dark"><strong>Manage Users:</strong></li>
+                <li class="list-group-item bg-dark" *ngFor="let user of userList; let i = index">
+                    <div class="row">
+                        <div class="col-12">
+                            <strong>{{i+1}}. ID: {{user._id}}</strong>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="ml-3">
+                                <strong>Name: </strong>{{user.name}}
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <strong>Email: </strong>{{user.email}}
+                        </div>
+                        <div class="col-sm-2">
+                            <strong>Role: </strong>{{user.role}}
+                        </div>
+                        <div class="col-12 text-center">
+                            <span class="btn btn-secondary btn-sm" (click)="delete(user)">Delete</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item bg-dark text-center" *ngIf="userList.length == 0"><strike>No Users!</strike></li>
+            </ul>
+        </div>
+    </div>
+</div>

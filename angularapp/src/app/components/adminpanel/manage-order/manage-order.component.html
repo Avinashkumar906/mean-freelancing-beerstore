@@ -1,0 +1,43 @@
+<div class="container-fluid p-4">
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group text-white" >
+                <li class="list-group-item bg-dark"><strong>Manage Orders:</strong></li>
+                <li class="list-group-item bg-dark" *ngFor="let item of orderList ; let i = index">
+                    <div class="row">
+                        <div class="col-12">
+                            <strong>{{i+1}}. ID: {{item._id}}</strong>
+                        </div>
+                        <div class="col-12">
+                            <div class="ml-3">
+                                {{item.address}}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="ml-3">
+                                <strong>Name: </strong> {{item.name}}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <strong>Email: </strong>{{item.email}}
+                        </div>
+                        <div class="col-sm-2">
+                            <strong>Date: </strong>{{item.status | date: 'dd/MM/yyyy'}}
+                        </div>
+                        <div class="col-sm-2">
+                            <strong>Time: </strong>{{item.status | date: 'hh:mm'}}
+                        </div>
+                        <div class="col-sm-2">
+                            <strong>Total: </strong>{{totalPrice(item)}}&nbsp;&euro;
+                        </div>
+                        <div class="col-12 text-center">
+                            <span class="btn btn-light btn-sm mr-1" (click)="viewOrder(item)">View</span>
+                            <span class="btn btn-secondary btn-sm" (click)="delete(item)">Delete</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item bg-dark text-center" *ngIf="orderList.length == 0"><strike>No Order!</strike></li>
+            </ul>
+        </div>
+    </div>
+</div>

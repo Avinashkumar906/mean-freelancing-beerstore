@@ -1,0 +1,63 @@
+.nav-container{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background-color: #000000ee;
+    backdrop-filter: blur(5px);
+    transition: all .5s;
+    overflow: hidden;
+    .align-center{
+        overflow: hidden;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        .list-group{
+            min-width: 300px;
+        }
+        .list-group-item{
+            outline: none;
+            background: none;
+            border: none;
+            box-sizing: border-box;
+            color: white;
+            border-radius: 0;
+            width: 100px;
+            display: block;
+            margin: auto;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            &:hover{
+                border-bottom: 2px solid whitesmoke;    
+            }
+        }
+        .list-group-item.active-custom{
+            border-bottom: 2px solid whitesmoke;
+        }
+    }
+    .close-custom{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        cursor: pointer;
+        color: white!important;
+        font-size: 35px;
+    }
+}
+.hm-menu{
+    cursor: pointer;
+    div{
+        width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 6px 0;
+    }
+}
+.visible{
+    transition: all .5s;
+    display: block;
+}

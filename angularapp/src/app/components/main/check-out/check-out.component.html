@@ -1,0 +1,141 @@
+<div class="container-fluid p-4">
+    <div *ngIf="user; else noUser">
+        <div class="card bg-dark text-white" *ngIf="previewOrder">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">1. Preview Order.</h2>
+            </div>
+            <div id="collapseOne" class="collapse show">
+                <div class="card-body">
+                    <ul class="list-group text-white mt-2" *ngIf="order.items.length != 0;else noItem">
+                        <li class="list-group-item bg-dark" *ngFor="let item of order.items;let i = index">
+                            <div class="row">
+                                <div class="col-12">
+                                    <strong>
+                                        {{i+1}}. ID: {{item._id}} 
+                                        <span class="text-secondary" *ngIf="item.quantity - item.selectedQuantity < 0">"{{availableStoct(item.quantity,item.selectedQuantity)}}"</span>
+                                    </strong> 
+                                </div>
+                                <div class="col-12">
+                                    <div class="text-center">
+                                        <img [src]='env.api + item.image' class="d-block mx-auto" height="150px">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="ml-3">
+                                        <strong>Name: </strong> {{item.name}}
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <strong>Price: </strong>{{item.cost}}&euro;
+                                </div>
+                                <div class="col-sm-2">
+                                    <strong>Volume: </strong>{{item.type}}
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="d-flex">
+                                        <input type="number" class="form-control d-inline h-50 text-right" style="padding: 2px;" [(ngModel)]="item.selectedQuantity" placeholder="Enter quantity" min="0" required />
+                                        <div class="mx-3"> Quantity</div>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <span class="btn btn-light btn-sm mr-1" [routerLink]="['/product',item._id]">View</span>
+                                    <span class="btn btn-secondary btn-sm" (click)="remove(product)">Delete</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item bg-dark">
+                            <div class="text-right">
+                                <span class="h5 mr-2">Total Payable: {{getTotal() > 0 ? getTotal() + '&euro;' : 'NA!'}}</span>
+                                <span (click)="getTotal() > 0  && proceedAddress()" class="h5 btn btn-secondary ml-2">Proceed</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <ng-template #noItem>
+                        <div class="my-4 text-center">
+                            <h3 class="h3 text-center">No Item In Cart!</h3>
+                            <span>Start shopping </span> <span class="btn btn-light" [routerLink]="['/product']">Beer !</span> here.
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+        <div class="card bg-dark text-white" *ngIf="previewAddress">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">2. Fill Shipping details</h2>
+            </div>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <!-- checkout form -->
+                    <form [formGroup]="userForm" (ngSubmit)="userForm.valid && checkOut()">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="h2">
+                                    Checkout.
+                                </h2>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Name</label>
+                                    <input class="form-control" type="text" formControlName="name"
+                                        placeholder="Enter Name">
+                                    <small class="text-muted"
+                                        *ngIf="userFormControl.name.invalid && (userFormControl.name.touched && userFormControl.name.dirty)">Please
+                                        Enter Name!</small>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Email</label>
+                                    <input class="form-control" type="text" formControlName="email"
+                                        placeholder="Enter Email">
+                                    <small class="text-muted"
+                                        *ngIf="userFormControl.email.invalid && (userFormControl.email.touched && userFormControl.email.dirty)">Please
+                                        Enter Email!</small>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="">Shipping address</label>
+                                    <textarea class="form-control" rows="3" formControlName="address"
+                                        placeholder="Enter Shipping address"></textarea>
+                                    <small class="text-muted"
+                                        *ngIf="userFormControl.address.invalid && (userFormControl.address.touched && userFormControl.address.dirty)">Enter
+                                        valid shipping address!</small>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="text-center" *ngIf="!submitted">
+                                    <button type="submit" class="btn btn-primary"
+                                        [disabled]="userForm.invalid">Place Order</button>
+                                </div>
+                                <div class="text-center" *ngIf="submitted">
+                                    <div class="spinner-border text-white" role="status">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="card bg-dark text-white" *ngIf="previewConfirmation">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">3. Order Confirmed</h2>
+            </div>
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h3 class="h3">Order Id: {{previewConfirmation}}</h3>
+                        <span class="btn btn-light" [routerLink]="['/orderdetail',previewConfirmation]">View</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #noUser>
+        <div class="w-100 text-center p-4">
+            <span class="h2 text-light d-block mt-4">Please Signin to place order !</span><br/>
+            <span class="btn btn-light d-inline-block mt-2" [routerLink]="['/signin']">Sign In!</span>
+        </div>
+    </ng-template>
+</div>

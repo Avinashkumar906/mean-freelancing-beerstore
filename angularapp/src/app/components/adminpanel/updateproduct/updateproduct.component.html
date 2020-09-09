@@ -1,0 +1,75 @@
+<div class="container-fluid py-4">
+    <div class="row">
+        <h2 class="h2 w-100 text-center mb-3">Manage Product</h2>
+        <div class="col-12">
+            <ul class="list-group text-white" >
+                <li class="list-group-item bg-dark"><strong>Out of Stock:</strong></li>
+                <li class="list-group-item bg-dark" *ngFor="let product of ostList;let i = index">
+                    <div class="row">
+                        <div class="col-12">
+                            <strong>{{i+1}}. ID: {{product._id}}</strong>
+                        </div>
+                        <div class="col-12">
+                            <div class="ml-3">
+                                {{product.description}}
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="ml-3">
+                                <strong>Name: </strong> {{product.name}}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <strong>Price: </strong>{{product.cost}}&euro;
+                        </div>
+                        <div class="col-sm-3">
+                            <strong>Volume: </strong>{{product.type}}
+                        </div>
+                        <div class="col-sm-2">
+                            <strong>{{product.quantity <=0 ? 'Out of Stock' : ''}}</strong>
+                        </div>
+                        <div class="col-12 text-center">
+                            <span class="btn btn-light btn-sm mr-1" [routerLink]="['/admin','product',product._id]">Update</span>
+                            <span class="btn btn-secondary btn-sm" (click)="delete(product)">Delete</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item bg-dark text-center" *ngIf="ostList.length == 0"><strike>No Item!</strike></li>
+            </ul>
+            <ul class="list-group text-white mt-2">
+                <li class="list-group-item bg-dark"><strong>Item in Stock:</strong></li>
+                <li class="list-group-item bg-dark" *ngFor="let product of productList;let i = index">
+                    <div class="row">
+                        <div class="col-12">
+                            <strong>{{i+1}}. ID: {{product._id}}</strong>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="ml-3">
+                                <strong>Name: </strong> {{product.name}}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <strong>Price: </strong>{{product.cost}}&euro;
+                        </div>
+                        <div class="col-sm-3">
+                            <strong>Volume: </strong>{{product.type}}
+                        </div>
+                        <div class="col-sm-2">
+                            <strong>Stock: </strong> {{product.quantity}} Unit
+                        </div>
+                        <div class="col-12">
+                            <div class="ml-3">
+                                {{product.description}}
+                            </div>
+                        </div>
+                        <div class="col-12 text-center">
+                            <span class="btn btn-light btn-sm mr-1" [routerLink]="['/admin','product',product._id]">Update</span>
+                            <span class="btn btn-secondary btn-sm" (click)="delete(product)">Delete</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item bg-dark text-center" *ngIf="productList.length == 0"><strike>No Item!</strike></li>
+            </ul>
+        </div>
+    </div>
+</div>

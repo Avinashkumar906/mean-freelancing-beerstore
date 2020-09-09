@@ -1,0 +1,22 @@
+    <div class="h-100 adjust">
+        <div class="container-fluid">
+            <div class="text-white text-center p-4 center">
+                <div class="my-2">
+                    <span class="h1 display-4">Let the drinks come to you.</span>
+                </div>
+                <p style="font-family: cursive;"></p>
+                <div class="my-2" *ngIf="!user;else logout">
+                    <p style="font-family: cursive;">Nobody will miss out on a memory because they were schlepping to a liquor store.</p>
+                    <span class="btn btn-secondary m-2 btn-lg" [routerLink]="['/signin']">signin </span>
+                    <span class="btn btn-light m-2 btn-lg" [routerLink]="['/signup']">signup !</span>
+                </div>
+                <ng-template #logout>
+                    <div class="my-2">
+                        <p style="font-family: cursive;">Nobody will miss out on a memory because they were schlepping to a liquor store.</p>
+                        <span class="btn btn-light m-2" [routerLink]="['/product']">Have a look to !</span>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
