@@ -36,14 +36,14 @@
                 <div class="form-group">
                     <label for="exampleInputEmail1">Stock Item</label>
                     <input type="number" class="form-control" formControlName="quantity" placeholder="Item in stock" >
-                    <small *ngIf="productFormControl.quantity.invalid && (productFormControl.quantity.touched && productFormControl.quantity.dirty)" class="form-text text-muted">Required !</small>
+                    <small *ngIf="productFormControl.quantity.invalid && (productFormControl.quantity.touched && productFormControl.quantity.dirty)" class="form-text text-muted">Required field!</small>
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Description</label>
                     <textarea rows="4" class="form-control" formControlName="description" placeholder="Description" ></textarea>
-                    <small *ngIf="productFormControl.description.invalid && (productFormControl.description.touched && productFormControl.description.dirty)" class="form-text text-muted">Name must be 4 character long !</small>
+                    <small *ngIf="productFormControl.description.invalid && (productFormControl.description.touched && productFormControl.description.dirty)" class="form-text text-muted">Required field!</small>
                 </div>
             </div>
         </div>

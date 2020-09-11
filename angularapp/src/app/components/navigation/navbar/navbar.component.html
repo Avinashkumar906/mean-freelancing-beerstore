@@ -34,13 +34,13 @@
                             <li class="list-group-item w-auto" *ngIf="(user && user.role === 'admin')" [routerLink]="['/admin','order']" [routerLinkActive]="['active-custom']" (click)="toggleNav()">
                                 <strong>Manage&nbsp;Orders</strong>
                             </li>
-                            <li class="list-group-item py-0 mt-3 w-100" style="border: none;"  *ngIf=" user; else dummy">
+                            <li class="list-group-item py-0 mt-1 w-100" style="border: none;"  *ngIf=" user; else dummy">
                                 <span class="btn btn-secondary" (click)="logout() || toggleNav()">logout</span> 
                             </li>
                             
                             <ng-template #dummy>
-                                <li class="list-group-item py-0 mt-3 w-100" style="border: none;">
-                                    <span class="btn btn-light mb-1 d-block" [routerLink]="['/signin']" [routerLinkActive]="['active-custom']" (click)="toggleNav()" >Sign In</span>
+                                <li class="list-group-item py-0 mt-1 w-100" style="border: none;">
+                                    <span class="btn btn-light mb-3 d-block" [routerLink]="['/signin']" [routerLinkActive]="['active-custom']" (click)="toggleNav()" >Sign In</span>
                                     <span class="btn btn-secondary d-block" [routerLink]="['/signup']" [routerLinkActive]="['active-custom']" (click)="toggleNav()" >Sign Up</span>
                                 </li>
                             </ng-template>

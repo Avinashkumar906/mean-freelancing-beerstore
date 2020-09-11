@@ -1,6 +1,6 @@
 <div class="d-block mx-auto py-2">
     <form [formGroup]="signupForm" (ngSubmit)="signupForm.valid && submit()" class="d-block form-custom s-light" style="max-width: 450px;">
-        <h2 class="h2 text-center mb-3">Sign Up</h2>
+        <h2 class="h2 text-center mb-4">Sign Up</h2>
         <div class="form-group">
             <!-- <label for="exampleInputEmail1" class="text-white">User Name</label> -->
             <input type="text" class="form-control" formControlName="name" placeholder="Enter name" >
@@ -16,18 +16,21 @@
             <input type="password" class="form-control" formControlName="password" placeholder="Password" >
             <small *ngIf="signupFormControl.password.invalid && (signupFormControl.password.touched && signupFormControl.password.dirty)" class="form-text text-muted text-white">Min length 6, Max length 20 and must be alpha numeric</small>
         </div>
-        <div class="text-center">
+        <div class="text-center mb-3">
             <div *ngIf="message;else spinner">
                 <h5 class="h5 my-2 text-center">
                     {{message}}
                 </h5>
-                <button type="submit" class="btn btn-light" [disabled]="signupForm.invalid">Submit</button>
+                <button type="submit" class="btn btn-secondary w-100" [disabled]="signupForm.invalid">Sign Up</button>
             </div>
             <ng-template #spinner>
                 <div class="spinner-border text-white" role="status">
                 </div>
             </ng-template>
         </div>
-        <span class="h6 text-center d-block my-2 text-white" style="cursor: pointer;" [routerLink]="['/signin']">Existing user, click here for signin.!</span>
+        <div class="text-center">
+            <span class="d-block text-white mb-3">OR</span>
+            <span class="btn btn-light btn-block" [routerLink]="['/signin']">Sign In</span>
+        </div>
     </form>
 </div>
