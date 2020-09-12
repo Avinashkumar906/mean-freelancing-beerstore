@@ -3,7 +3,7 @@
         <div class="col-md-12 text-center" *ngIf="user;else noUser">
             <h2 class="h2">Hi {{user && user?.name}}</h2>
             <p>{{user && user?.email}}</p>
-            <span class="btn btn-light my-3" (click)="fetchOrders()">click to view recent orders:</span>
+            <span class="btn btn-light my-3" (click)="fetchOrders()">{{ !searching ? 'View recent orders' : 'Searching...'}}</span>
             <ul class="list-group text-white text-left" *ngIf="orderList.length != 0;">
                 <li class="list-group-item bg-dark"><strong>Recent Orders:</strong></li>
                 <li class="list-group-item bg-dark" *ngFor="let item of orderList;let i = index">

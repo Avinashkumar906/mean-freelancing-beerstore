@@ -17,7 +17,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     private httpService:HttpService,
   ) { }
 
-  orderId='';
+  searching:boolean;
   noOrder:boolean = false
   orderList:Array<Order> = [];
   dispBag = new DisposeBag();
@@ -36,13 +36,18 @@ export class OrderComponent implements OnInit, OnDestroy {
 	}
 
   fetchOrders(){
+    this.searching = true;
     this.dispBag.add(
       this.httpService.getOrdersByMail(this.user).subscribe(
         (orders:Array<Order>)=>{
+          this.searching = false;
           this.orderList = orders;
           this.noOrder = orders.length === 0 ? true : false;
         },
-        err=>console.log(err)
+        err=>{
+          this.searching = false;
+          console.log(err)
+        }
       )
     )
   }

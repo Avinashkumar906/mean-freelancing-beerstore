@@ -5,11 +5,11 @@
                 <div style="overflow: hidden;">
                     <img [src]='env.api + product.image' class="d-block mx-auto" height="300px">
                 </div>
-                <small class="d-block text-center" *ngIf="product.quantity >20 ">*Available in stock*</small>
-                <small class="d-block text-center text-muted"
-                    *ngIf="product.quantity <= 20 ">{{product.quantity <= 0 ? 'Out of stock!' : "Hurry up! only" + product.quantity + " left !"}}</small>
+                <small class="d-block text-center mt-3" *ngIf="product.quantity > 10 ">*Available in stock*</small>
+                <small class="d-block text-center mt-3"
+                    *ngIf="product.quantity <= 10 ">{{product.quantity <= 0 ? 'Out of stock!' : "Hurry up! only" + product.quantity + " left !"}}</small>
                 <div class="my-1">
-                    <h4 class="h4 text-center"><strong>Price:</strong>&euro; {{product.cost}}/- </h4>
+                    <h4 class="h4 text-center mt-2"><strong>Best Deal : </strong>{{product.cost}} &euro; only. </h4>
                 </div>
             </div>
             <div class="col-md-7 h-100">

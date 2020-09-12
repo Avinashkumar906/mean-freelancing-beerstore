@@ -49,11 +49,16 @@ export class OrderdetailComponent implements OnInit,OnDestroy {
         (order:Order)=>{
          if(order){
           this.order = order
+          this.err = undefined;
          } else {
-          this.err = new Error('no product found')
+           this.order = undefined;
+           this.err = new Error('no product found')
          }
         },
-        err=>this.err = err
+        err=>{
+          this.order = undefined;
+          this.err = err
+        }
       )
     )
   }

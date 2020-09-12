@@ -25,11 +25,9 @@ mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true,useUnifiedTopolog
                     password:bcrypt.hashSync(process.env.ADMIN_PSWD,10),
                     role:process.env.ADMIN_ROLE
                 })
-                user.save((res)=>console.log(`Admin Registered!`))
-            } else {
-                console.log(`Admin exist!`)
+                user.save()
             }
-            console.log(`Mongodb connected ! <br/>`);
+            console.log(`Mongodb Up!`);
         }
     )
     .catch(

@@ -86,7 +86,6 @@ export interface Product{
   type: string,
   description: string,
   colors: Array<string>,
-  selectedColor:string,
   selectedQuantity:number,
   image: string,
 }

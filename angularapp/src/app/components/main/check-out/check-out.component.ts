@@ -103,8 +103,9 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     if(this.getTotal() > 0){
       this.submitted = true;
       this.order.name = this.userForm.value.name;
-      this.order.email = this.userForm.value.email
-      this.order.address = this.userForm.value.address
+      this.order.email = this.userForm.value.email;
+      this.order.address = this.userForm.value.address;
+      this.order.status = new Date().toLocaleString();
       this.productService.adjustStock(this.order.items)
       this.dispBag.add(
         this.httpService.placeOrder(this.order).subscribe(

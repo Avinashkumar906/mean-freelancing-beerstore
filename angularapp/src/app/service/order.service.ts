@@ -28,7 +28,7 @@ export class OrderService {
     if(inOrder<0){
       this.order.items.push(product);
     } else {
-      alert('Item availale in cart!')
+      this.order.items[inOrder].selectedQuantity < this.order.items[inOrder].quantity ? ++(this.order.items[inOrder].selectedQuantity) : alert("Not in Stock!")
     }
     localStorage.setItem('order',JSON.stringify(this.order))
     this.orderChanged.next(this.order)

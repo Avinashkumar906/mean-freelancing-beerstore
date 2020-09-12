@@ -11,35 +11,27 @@
                             <div class="row">
                                 <div class="col-12">
                                     <strong>
-                                        {{i+1}}. ID: {{item._id}} 
+                                        {{i+1}}
                                         <span class="text-secondary" *ngIf="item.quantity - item.selectedQuantity < 0">"{{availableStoct(item.quantity,item.selectedQuantity)}}"</span>
                                     </strong> 
                                 </div>
-                                <div class="col-12">
-                                    <div class="text-center">
+                                <div class="col-md-6">
+                                    <div class="text-center ml-3">
                                         <img [src]='env.api + item.image' class="d-block mx-auto" height="150px">
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="ml-3">
-                                        <strong>Name: </strong> {{item.name}}
-                                    </div>
-                                </div>
-                                <div class="col-sm-3">
-                                    <strong>Price: </strong>{{item.cost}}&euro;
-                                </div>
-                                <div class="col-sm-2">
-                                    <strong>Volume: </strong>{{item.type}}
-                                </div>
-                                <div class="col-sm-3">
+                                <div class="col-md-6">
+                                    <h5 class="h5"><strong>Name: </strong> {{item.name}}</h5>
+                                    <h6><strong>Price: </strong>{{item.cost}}&euro;</h6>
+                                    <h6><strong>Volume: </strong>{{item.type}}</h6>
                                     <div class="d-flex">
-                                        <input type="number" class="form-control d-inline h-50 text-right" style="padding: 2px;" [(ngModel)]="item.selectedQuantity" placeholder="Enter quantity" min="0" required />
-                                        <div class="mx-3"> Quantity</div>
+                                        <div class="mr-2">Quantity </div>
+                                        <input type="number" class="d-inline text-right" style="max-width: 80px;width: 50%;" [(ngModel)]="item.selectedQuantity" placeholder="Enter quantity" required />
                                     </div>
-                                </div>
-                                <div class="col-12 text-center">
-                                    <span class="btn btn-light btn-sm mr-1" [routerLink]="['/product',item._id]">View</span>
-                                    <span class="btn btn-secondary btn-sm" (click)="remove(product)">Delete</span>
+                                    <div class="text-left mt-2">
+                                        <span class="btn btn-light btn-sm mr-3" [routerLink]="['/product',item._id]">View</span>
+                                        <span class="btn btn-secondary btn-sm" (click)="remove(item)">Remove</span>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -73,7 +65,7 @@
                                     Checkout.
                                 </h2>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="">Name</label>
                                     <input class="form-control" type="text" formControlName="name"
@@ -83,8 +75,8 @@
                                         Enter Name!</small>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
+                            <div class="col-sm-6 d-none">
+                                <div class="form-group ">
                                     <label for="">Email</label>
                                     <input class="form-control" type="text" formControlName="email"
                                         placeholder="Enter Email">
@@ -105,7 +97,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="text-center" *ngIf="!submitted">
-                                    <button type="submit" class="btn btn-primary"
+                                    <button type="submit" class="btn btn-secondary"
                                         [disabled]="userForm.invalid">Place Order</button>
                                 </div>
                                 <div class="text-center" *ngIf="submitted">
@@ -126,7 +118,7 @@
                 <div class="card-body">
                     <div class="text-center">
                         <h3 class="h3">Order Id: {{previewConfirmation}}</h3>
-                        <span class="btn btn-light" [routerLink]="['/orderdetail',previewConfirmation]">View</span>
+                        <span class="btn btn-secondary" [routerLink]="['/orderdetail',previewConfirmation]">View</span>
                     </div>
                 </div>
             </div>
